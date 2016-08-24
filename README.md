@@ -1,21 +1,23 @@
 # Snapper
 A security tool for grabbing screenshots of many web hosts. This tool is useful after [DNS enumeration](https://github.com/mschwager/fierce) or after enumerating web hosts via nmap or nessus.
 
+A sample output can be seen here: [https://security.love/Snapper/output](https://security.love/Snapper/output)
+
 ## How to install
 
-- Install python dependancies
+- Clone snapper
 ```bash
-pip install selenium, Jinja2, requests
+git clone https://github.com/dxa4481/snapper
+```
+
+- Install python dependencies
+```bash
+pip install -r requirements.txt
 ```
 
 - Install phantomJS (you need to have [npm installed](https://nodejs.org/en/download/package-manager/))
 ```bash
 npm -g install phantomjs
-```
-
-- Clone snapper
-```bash
-git clone https://github.com/dxa4481/snapper
 ```
 
 ## How to use
@@ -24,8 +26,15 @@ For a simple demo try:
 ```
 python snapper.py -l "google.com, gmail.google.com, ads.google.com" -c 3 -v
 ```
-This kicks off 3 processes, each which fetch screenshots the http and https versions of the hosts in question. The output is served up via localhost:8000 and can be seen below
+This kicks off 3 processes, each of which fetch screenshots of the http and https versions of the hosts in question. The output is served up via localhost:8000 and can be seen below
 ![output results](http://i.imgur.com/OlvyIBp.png)
+
+You can also read from a file, these results where generated from a [fierce](https://github.com/mschwager/fierce) enumeration:
+```
+python snapper.py -f googleExample.txt -c 10 -v
+```
+You can view the results [here](https://security.love/Snapper/output). Note in addition to the server, the static files are available in your current working directory as "output"
+
 
 ## More options
 
